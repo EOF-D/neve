@@ -1,6 +1,9 @@
 # Thanks for the keybinds primeagen and folke!
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options = {
     keys.enable = lib.mkEnableOption "Enable keys module";
   };
