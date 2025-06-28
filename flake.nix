@@ -4,33 +4,34 @@
   inputs = {
     nixvim.url = "github:nix-community/nixvim";
     flake-utils.url = "github:numtide/flake-utils";
+    # Add neorg overlay for proper neorg support
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      nixvim,
-      flake-utils,
-      ...
-    }@inputs:
-    let
-      config = import ./config; # import the module directly
-      # Enable unfree packages
-      nixpkgsConfig = {
-        allowUnfree = true;
-      };
-    in
+  outputs = {
+    self,
+    nixpkgs,
+    nixvim,
+    flake-utils,
+    neorg-overlay,
+    ...
+  } @ inputs: let
+    config = import ./config; # import the module directly
+    # Enable unfree packages and add neorg overlay
+    nixpkgsConfig = {
+      allowUnfree = true;
+    };
+  in
     {
       nixvimModule = config;
     }
     // flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         nixvimLib = nixvim.lib.${system};
         pkgs = import nixpkgs {
           inherit system;
           config = nixpkgsConfig;
+          overlays = [neorg-overlay.overlays.default];
         };
         nixvim' = nixvim.legacyPackages.${system};
         nvim = nixvim'.makeNixvimWithModule {
@@ -41,8 +42,7 @@
             inherit self;
           };
         };
-      in
-      {
+      in {
         checks = {
           # Run `nix flake check .` to verify that your config is not broken
           default = nixvimLib.check.mkTestDerivationFromNvim {

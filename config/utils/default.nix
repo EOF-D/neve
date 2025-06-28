@@ -2,8 +2,7 @@
   lib,
   config,
   ...
-}:
-{
+}: {
   imports = [
     ./better-escape.nix
     ./cloak.nix
@@ -13,6 +12,7 @@
     ./mini.nix
     ./neocord.nix
     ./neotest.nix
+    ./neorg.nix
     ./nvim-autopairs.nix
     ./nvim-surround.nix
     ./nvterm.nix
@@ -41,6 +41,7 @@
     mini.enable = lib.mkDefault true;
     neocord.enable = lib.mkDefault true;
     neotest.enable = lib.mkDefault true;
+    neorg.enable = lib.mkDefault true;
     nvim-autopairs.enable = lib.mkDefault true;
     colorizer.enable = lib.mkDefault true;
     nvim-surround.enable = lib.mkDefault true;

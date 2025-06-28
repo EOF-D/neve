@@ -1,5 +1,8 @@
-{ lib, config, ... }:
 {
+  lib,
+  config,
+  ...
+}: {
   options = {
     which-key.enable = lib.mkEnableOption "Enable which-key module";
   };
@@ -10,7 +13,7 @@
         icons = {
           breadcrumb = "»";
           group = "+";
-          separator = ""; # ➜
+          separator = ""; # ➜
         };
         spec = [
           # Harpoon Configs
@@ -44,6 +47,39 @@
             __unkeyed-1 = "<leader>hm";
             mode = "n";
             group = "Harpoon File 4";
+          }
+
+          # Neorg Configs
+          {
+            __unkeyed-1 = "<leader>o";
+            mode = "n";
+            group = "+neorg";
+            icon = "";
+          }
+          {
+            __unkeyed-1 = "<leader>on";
+            mode = "n";
+            group = "Notes workspace";
+          }
+          {
+            __unkeyed-1 = "<leader>ow";
+            mode = "n";
+            group = "Work workspace";
+          }
+          {
+            __unkeyed-1 = "<leader>or";
+            mode = "n";
+            group = "Return from neorg";
+          }
+          {
+            __unkeyed-1 = "<leader>oj";
+            mode = "n";
+            group = "Today's journal";
+          }
+          {
+            __unkeyed-1 = "<leader>ot";
+            mode = "n";
+            group = "Table of contents";
           }
 
           # General Mappings
