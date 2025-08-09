@@ -47,6 +47,24 @@
       };
     };
 
+    extraConfigLua = ''
+      local get_option=vim.filetype.get_option
+      rawset(vim.filetype,'get_option',function (ft,opt)
+          if ft=='norg' then return vim.api.nvim_get_option_value(opt,{}) end
+          return get_option(ft,opt)
+      end)
+
+      vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, { 
+        pattern = "*.norg", 
+        callback = function() 
+          vim.opt_local.conceallevel = 3
+          vim.opt_local.concealcursor = "nc"
+          vim.opt_local.wrap = true
+          vim.opt_local.linebreak = true
+        end
+      })
+    '';
+
     keymaps = [
       {
         mode = "n";
@@ -90,6 +108,15 @@
         action = "<plug>(neorg.qol.todo-items.todo.task-cycle)";
         options = {
           desc = "Switch the task under the cursor between a select few states";
+          silent = true;
+        };
+      }
+      {
+        mode = "n";
+        key = "<localleader><CR>";
+        action = "<plug>(neorg.esupports.hop.hop-link)";
+        options = {
+          desc = "Hop to the destination of the link under the cursor";
           silent = true;
         };
       }
