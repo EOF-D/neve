@@ -111,15 +111,6 @@
           silent = true;
         };
       }
-      {
-        mode = "n";
-        key = "<localleader><CR>";
-        action = "<plug>(neorg.esupports.hop.hop-link)";
-        options = {
-          desc = "Hop to the destination of the link under the cursor";
-          silent = true;
-        };
-      }
     ];
   };
 }
