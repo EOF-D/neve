@@ -20,7 +20,7 @@
           term_colors = true;
           integrations = {
             cmp = true;
-            noice = true;
+            noice = false;
             notify = true;
             neotree = true;
             harpoon = true;

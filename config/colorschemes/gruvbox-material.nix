@@ -42,7 +42,7 @@
       cmp.enable = true;
       neo-tree.enable = true;
       harpoon.enable = true;
-      noice.enable = true;
+      noice.enable = false;
       notify.enable = true;
       illuminate.enable = true;
       indent-blankline.enable = true;
