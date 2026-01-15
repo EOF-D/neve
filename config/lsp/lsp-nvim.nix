@@ -90,6 +90,30 @@
           ruff = {
             enable = true;
           };
+          gopls = {
+            enable = true;
+            autostart = true;
+            filetypes = [ "go" "gomod" "gowork" "gotmpl" ];
+            settings = {
+              gopls = {
+                analyses = {
+                  unusedparams = true;
+                  shadow = true;
+                };
+                staticcheck = true;
+                gofumpt = true;
+                hints = {
+                  assignVariableTypes = true;
+                  compositeLiteralFields = true;
+                  compositeLiteralTypes = true;
+                  constantValues = true;
+                  functionTypeParameters = true;
+                  parameterNames = true;
+                  rangeVariableTypes = true;
+                };
+              };
+            };
+          };
 
           rust_analyzer = {
             enable = true;
@@ -207,7 +231,7 @@
           vim.diagnostic.config({
       			float = { border = "rounded" },
       			virtual_text = {
-      				prefix = "",
+      				prefix = "",
       			},
             signs = true,
             underline = true,
